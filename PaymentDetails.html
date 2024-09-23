@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="travelling.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle form submission
+            document.getElementById('getPackages.php').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Collect form data
+                const formData = new FormData(this);
+                const packageId = new URLSearchParams(window.location.search).get('package'); // Get package ID from query string
+
+                // Redirect to PaymentDetails.html with user details
+                const queryString = new URLSearchParams({
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                }).toString();
+
+                // Redirect to PaymentDetails.html
+                window.location.href = 'PaymentDetails.html?' + queryString;
+            });
+
+            // Display selected plan
+            const packageId = new URLSearchParams(window.location.search).get('package');
+            if (packageId) {
+                document.getElementById('selected-plan').textContent = `Selected Plan: ${packageId}`;
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Review Your Details</h1>
+
+    <div id="user-details">
+        <!-- User details will be displayed here -->
+    </div>
+
+    <div id="selected-plan">
+        <!-- Selected plan details will be displayed here -->
+    </div>
+
+    <button id="book-button">Book</button>
+</body>
+</html>

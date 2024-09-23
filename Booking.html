@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Details</title>
+    <link rel="stylesheet" href="Booking.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle form submission
+            document.getElementById('booking-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Collect form data
+                const formData = new FormData(this);
+                const destination = new URLSearchParams(window.location.search).get('destination'); // Get destination from query string
+
+                // Append destination to form data
+                formData.append('destination', destination);
+
+                // Simulate the package data (you can replace this with actual data from the server or form)
+                const package = {
+                    destination: destination,
+                    num_travellers: formData.get('num_travellers') || 1, // You can add an input field for this if needed
+                    services: "Basic Services", // This can be dynamic
+                    price: 499 // Set a price or fetch it dynamically
+                };
+
+                // Send form data to saveBooking.php
+                fetch('Booking.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(result => {
+                    console.log(result);
+
+                    // Display user details on the same page
+                    document.getElementById('user-details').innerHTML = `
+                        <h2>User Details</h2>
+                        <p>Name: ${formData.get('name')}</p>
+                        <p>Email: ${formData.get('email')}</p>
+                        <p>Phone: ${formData.get('phone')}</p>
+                    `;
+
+                    // Display selected plan details
+                    document.getElementById('selected-plan').innerHTML = `
+                        <h2>Selected Plan</h2>
+                        <h2>Destination: ${package.destination}</h2>
+                            <p>Number of Travellers: ${package.num_travellers}</p>
+                            <p>Services: ${package.services}</p>
+                            <p>Price: ${package.price}</p>
+                            <form class="book-form">
+                    `;
+
+                    // Show booked message with details
+                    setTimeout(() => {
+                        alert(`Booking Confirmed!\n\nUser Details:\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nPhone: ${formData.get('phone')}\n\nSelected Plan:\nDestination: ${package.destination}\nNumber of Travellers: ${package.num_travellers}\nServices: ${package.services}\nPaid: $${package.price}`);
+                    }, 2000);
+                })
+                .catch(error => console.error('Error:', error));
+            });
+
+            // Display selected plan
+            const destination = new URLSearchParams(window.location.search).get('destination');
+            if (destination) {
+                document.getElementById('selected-plan').textContent = `Selected Plan: ${destination}`;
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Provide Your Details</h1>
+
+    <h2>Your Information</h2>
+    <form id="booking-form" action="Booking.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="username" ><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="email" required><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" placeholder="phone number" required><br>
+
+        <button type="submit">Proceed</button>
+    </form>
+
+    <div id="user-details">
+        <!-- User details will be displayed here -->
+    </div>
+
+    <div id="selected-plan">
+        <!-- Selected plan details will be displayed here -->
+    </div>
+</body>
+</html>

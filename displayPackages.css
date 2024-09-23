@@ -1,0 +1,91 @@
+/* displayPackages.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.packages-section {
+    padding: 2rem;
+}
+
+#packages-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.package {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 300px;
+}
+
+.package:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.package h2 {
+    background-color: #4CAF50;
+    color: white;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+.package p {
+    padding: 1rem;
+    margin: 0;
+    border-bottom: 1px solid #f4f4f9;
+}
+
+.package p:last-child {
+    border-bottom: none;
+}
+
+.update-button, .delete-button {
+    background-color: #f44336;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 1rem;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+}
+
+.update-button:hover, .delete-button:hover {
+    background-color: #d32f2f;
+}
+
+#create-plan-button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 1rem;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    transition: background-color 0.3s;
+}
+
+#create-plan-button:hover {
+    background-color: #45a049;
+}

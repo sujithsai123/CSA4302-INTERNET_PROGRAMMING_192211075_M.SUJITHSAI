@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Travel Packages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form, .package-list {
+            max-width: 500px;
+            margin: auto;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .package {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin - Add New Package</h1>
+    <form id="addPackageForm" method="POST" action="add_package.php">
+        <label for="destination">Destination</label>
+        <input type="text" id="destination" name="destination" required>
+        <label for="num_travelers">Number of Travelers</label>
+        <input type="number" id="num_travelers" name="num_travelers" required>
+        <label for="start_date">Start Date</label>
+        <input type="date" id="start_date" name="start_date" required>
+        <label for="end_date">End Date</label>
+        <input type="date" id="end_date" name="end_date" required>
+        <label for="price">Price</label>
+        <input type="text" id="price" name="price" required>
+        <button type="submit">Create Package</button>
+    </form>
+    
+    <h1>Existing Packages</h1>
+    <div class="package-list" id="packageList"></div>
+    
+    <script>
+        fetch('get_package.php')
+        .then(response => response.json())
+        .then(data => {
+            const packageList = document.getElementById('packageList');
+            data.forEach(pkg => {
+                const packageDiv = document.createElement('div');
+                packageDiv.className = 'package';
+                packageDiv.innerHTML = `
+                    <h3>${pkg.destination}</h3>
+                    <p>Number of Travelers: ${pkg.num_travelers}</p>
+                    <p>Start Date: ${pkg.start_date}</p>
+                    <p>End Date: ${pkg.end_date}</p>
+                    <p>Price: $${pkg.price}</p>
+                    <button class="delete-btn" onclick="deletePackage(${pkg.id})">Delete</button>
+                `;
+                packageList.appendChild(packageDiv);
+            });
+        });
+    
+        function deletePackage(id) {
+            fetch(`delete_package.php?id=${id}`, { method: 'GET' })
+            .then(() => window.location.reload());
+        }
+    </script>
+</body>
+ </html>    

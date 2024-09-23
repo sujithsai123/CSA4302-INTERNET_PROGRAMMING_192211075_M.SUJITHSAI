@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages</title>
+    <link rel="stylesheet" href="travelling.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    <h1>Available Travel Packages</h1>
+    <div id="packages"></div>
+
+    <script>
+        // Fetch and display travel packages
+        fetch('get_package.php')
+        .then(response => response.json())
+        .then(data => {
+            const packagesDiv = document.getElementById('packages');
+            data.forEach(pkg => {
+                const packageDiv = document.createElement('div');
+                packageDiv.className = 'package';
+                packageDiv.innerHTML = `
+                    <h3>${pkg.destination}</h3>
+                    <p>Number of Travelers: ${pkg.num_travelers}</p>
+                    <p>Start Date: ${pkg.start_date}</p>
+                    <p>End Date: ${pkg.end_date}</p>
+                    <p>Price: $${pkg.price}</p>
+                    <button onclick="bookPackage(${pkg.id})">Book Now</button>
+                `;
+                packagesDiv.appendChild(packageDiv);
+            });
+        });
+
+        function bookPackage(packageId) {
+            window.location.href = `TravelbookingIndex.html?package_id=${packageId}`;
+        }
+    </script>
+</body>
+</html>

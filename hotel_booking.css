@@ -1,0 +1,31 @@
+body {
+    font-family: cursive;
+    margin: 0;
+    padding: 0;
+    background-color: #65f77e;
+    background-image: url('design2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-family: cursive;
+    color:#ffffff;
+}
+
+#rooms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.room {
+    border: 1px solid #127ee3;
+    margin: 10px;
+    padding: 10px;
+    background-color: #123ff1;
+    width: 200px;
+    text-align: center;
+}

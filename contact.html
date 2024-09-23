@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Escape Travels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #444;
+            overflow: hidden;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar .nav-links li {
+            margin: 0 1rem;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: block;
+        }
+
+        .navbar .nav-links a:hover {
+            background-color: #555;
+        }
+
+        .contact-section {
+            padding: 2rem;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .contact-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-container label {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .contact-container input,
+        .contact-container textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact-container button {
+            padding: 0.75rem;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .contact-container button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert("Thank you for contacting us! We will reach you soon.");
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Escape Travels</h1>
+    </header>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="flight_bookingIndex.html">Flight</a></li>
+            <li><a href="travelling.html">Tours</a></li>
+            <li><a href="hotel.html">Hotels</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="adminlogin.html">Admin</a></li>
+        </ul>
+    </nav>
+    <section class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <form onsubmit="handleSubmit(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

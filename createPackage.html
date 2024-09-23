@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Travel Package - Escape Travels</title>
+    <link rel="stylesheet" href="AdminTravelPlan.css">
+</head>
+<body>
+    <header>
+        <h1>Create Travel Package</h1>
+    </header>
+    <section class="admin-section">
+        <form action="createPackage.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="create">
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" required>
+            </div>
+            <div class="form-group">
+                <label for="num-travellers">Number of Travellers:</label>
+                <input type="number" id="num-travellers" name="num-travellers" required>
+            </div>
+            <div class="form-group">
+                <label for="services">Services:</label>
+                <div>
+                    <input type="checkbox" id="food" name="services[]" value="food">
+                    <label for="food">Food</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="vehicle" name="services[]" value="vehicle">
+                    <label for="vehicle">Travelling Vehicle</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="site-visiting" name="services[]" value="site-visiting">
+                    <label for="site-visiting">Site Visiting</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+</body>
+</html>

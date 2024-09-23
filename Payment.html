@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details</title>
+    <link rel="stylesheet" href="travelling.css">
+    <script>
+        // Function to fetch booking details via AJAX
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const packageId = params.get('package');
+            const userId = params.get('bookings');
+
+            // Fetch user and package details via AJAX from PHP
+            fetch(`bookingDetails.php?package_id=${packageId}&user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Fill in the package details
+                    document.getElementById('destination').textContent = data.package.destination;
+                    document.getElementById('num_travellers').textContent = data.package.num_travellers;
+                    document.getElementById('services').textContent = data.package.services;
+                    document.getElementById('price').textContent = `$${data.package.price}`;
+
+                    // Fill in the user details
+                    document.getElementById('name').textContent = data.user.name;
+                    document.getElementById('email').textContent = data.user.email;
+                    document.getElementById('phone').textContent = data.user.phone;
+                })
+                .catch(error => console.error('Error fetching booking details:', error));
+        });
+
+        // Show a success message on booking confirmation
+        function showBookedMessage() {
+            alert("Booking successful!");
+        }
+    </script>
+</head>
+<body>
+    <h1>Review and Confirm Your Booking</h1>
+
+    <!-- Display selected package details -->
+    <h2>Selected Package Details</h2>
+    <p>Destination: <span id="destination"></span></p>
+    <p>Number of Travellers: <span id="num_travellers"></span></p>
+    <p>Services: <span id="services"></span></p>
+    <p>Price: <span id="price"></span></p>
+
+    <!-- Display user details -->
+    <h2>Your Details</h2>
+    <p>Name: <span id="name"></span></p>
+    <p>Email: <span id="email"></span></p>
+    <p>Phone: <span id="phone"></span></p>
+
+    <!-- Book button with a pop-up on click -->
+    <form method="POST" action="processBooking.php">
+        <input type="hidden" name="package_id" value="">
+        <input type="hidden" name="user_id" value="">
+        <button type="submit" onclick="showBookedMessage()">Book Now</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,91 @@
+/* Booking.css */
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, skyblue, lightgreen);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #034f84;
+}
+
+form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #034f84;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #028482;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #034f84;
+}
+
+/* Display User and Plan Details */
+#user-details,
+#selected-plan {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+#user-details h2,
+#selected-plan h2 {
+    font-size: 18px;
+    color: #034f84;
+}
+
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* Styling for Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        max-width: 100%;
+    }
+}
